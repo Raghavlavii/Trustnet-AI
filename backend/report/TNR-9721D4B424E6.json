@@ -1,0 +1,81 @@
+{
+  "report_metadata": {
+    "report_id": "TNR-9721D4B424E6",
+    "generated_at": "2026-04-25T18:23:58.061893+00:00",
+    "report_version": "1.0",
+    "classification": "CYBERCRIME INTELLIGENCE REPORT",
+    "for_authority_use": true
+  },
+  "incident_summary": {
+    "session_id": "317b30838373429d9577896be31df352",
+    "detected_at": "2026-04-25T18:23:57.366153+00:00",
+    "verdict": "Scam",
+    "trust_score": 0.31,
+    "ml_scam_probability": 0.9969,
+    "scam_type": "phishing",
+    "risk_level": "high",
+    "scam_summary": "Scammers are impersonating a bank to block the victim's account and demand an OTP."
+  },
+  "extracted_intelligence": {
+    "contact_information": {
+      "phone_numbers": [
+        "+91 9876543210"
+      ],
+      "email_addresses": [],
+      "urls": []
+    },
+    "financial_information": {
+      "payment_methods": [],
+      "amounts_mentioned": []
+    },
+    "identity_information": {
+      "names_or_aliases": [],
+      "organizations_impersonated": [
+        "bank"
+      ]
+    },
+    "scam_tactics": {
+      "indicators": [
+        "urgency: urgent",
+        "urgency: immediately",
+        "urgency: now",
+        "credential_request: otp",
+        "threat: blocked",
+        "impersonation: bank"
+      ],
+      "urgency_tactics": [
+        "time limit",
+        "immediate action required"
+      ],
+      "threats_made": [
+        "permanent account disablement"
+      ],
+      "false_claims": []
+    }
+  },
+  "conversation_timeline": [
+    {
+      "role": "user",
+      "content": "URGENT! Your bank account is blocked. Send OTP now or it will be permanently disabled. Call +91 9876543210 immediately.",
+      "timestamp": "2026-04-25T18:23:58.056207"
+    }
+  ],
+  "recommendations": {
+    "report_to": "cybercrime cell",
+    "target_demographic": "general public",
+    "immediate_actions": [
+      "Document all evidence before contacting authorities",
+      "Report phone numbers to DND (1909) and Sanchar Saathi portal",
+      "Change passwords for all affected accounts immediately",
+      "File online FIR at cybercrime.gov.in or call 1930"
+    ]
+  },
+  "technical_metadata": {
+    "detection_method": "ML (SGDClassifier) + LLM Analysis (Groq)",
+    "ml_model": "TrustNet AI v1.0",
+    "extraction_methods": [
+      "regex",
+      "llm_structured"
+    ]
+  }
+}

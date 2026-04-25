@@ -1,0 +1,69 @@
+{
+  "report_metadata": {
+    "report_id": "TNR-2979516DD721",
+    "generated_at": "2026-04-25T19:52:07.659380+00:00",
+    "report_version": "1.0",
+    "classification": "CYBERCRIME INTELLIGENCE REPORT",
+    "for_authority_use": true
+  },
+  "incident_summary": {
+    "session_id": "d84529a6537d4d2bb77803c1fa3c100f",
+    "detected_at": "2026-04-25T19:52:06.939251+00:00",
+    "verdict": "Scam",
+    "trust_score": 8.91,
+    "ml_scam_probability": 0.9109,
+    "scam_type": "phishing",
+    "risk_level": "medium",
+    "scam_summary": "Lottery scam: victim is tricked into sending OTP to claim a non-existent prize"
+  },
+  "extracted_intelligence": {
+    "contact_information": {
+      "phone_numbers": [],
+      "email_addresses": [],
+      "urls": []
+    },
+    "financial_information": {
+      "payment_methods": [],
+      "amounts_mentioned": []
+    },
+    "identity_information": {
+      "names_or_aliases": [],
+      "organizations_impersonated": []
+    },
+    "scam_tactics": {
+      "indicators": [
+        "credential_request: otp",
+        "financial_bait: lottery"
+      ],
+      "urgency_tactics": [],
+      "threats_made": [],
+      "false_claims": [
+        "you have won a lottery"
+      ]
+    }
+  },
+  "conversation_timeline": [
+    {
+      "role": "user",
+      "content": "hello, can you send me otp, you have won a lottery",
+      "timestamp": "2026-04-25T19:52:07.656439"
+    }
+  ],
+  "recommendations": {
+    "report_to": "Cybercrime Cell",
+    "target_demographic": "general public",
+    "immediate_actions": [
+      "Document all evidence before contacting authorities",
+      "Change passwords for all affected accounts immediately",
+      "File online FIR at cybercrime.gov.in or call 1930"
+    ]
+  },
+  "technical_metadata": {
+    "detection_method": "ML (SGDClassifier) + LLM Analysis (Groq)",
+    "ml_model": "TrustNet AI v1.0",
+    "extraction_methods": [
+      "regex",
+      "llm_structured"
+    ]
+  }
+}
