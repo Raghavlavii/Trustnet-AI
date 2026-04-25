@@ -1,0 +1,59 @@
+services:
+  - type: web
+    name: trustnet-ai
+    runtime: python
+    region: oregon
+    plan: free
+
+    rootDir: backend   # ✅ FIXED (safe path)
+
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+
+      - key: ENVIRONMENT
+        value: production
+
+      - key: GROQ_API_KEY
+        sync: false
+
+      - key: GROQ_MODEL
+        value: llama-3.1-8b-instant
+
+      - key: DATABASE_URL
+        sync: false   # ⚠️ MUST SET IN DASHBOARD
+
+      - key: CORS_ORIGINS
+        value: "*"
+
+      - key: EXTRACTION_THRESHOLD
+        value: "0.5"
+
+      - key: REPORTS_DIR
+        value: /tmp/reports   # ✅ correct for Render ephemeral FS
+
+    healthCheckPath: /health
+    autoDeploy: true
+
+
+databases:
+  - name: trustnet-db
+    databaseName: trustnet
+    plan: free
+    region: oregon
+
+
+services:
+  - type: web
+    name: trustnet-ai
+    runtime: python
+    region: oregon
+    plan: free
+
+    rootDir: backend   # ✅ FIXED
+
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT

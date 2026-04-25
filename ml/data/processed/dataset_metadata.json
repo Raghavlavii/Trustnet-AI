@@ -1,0 +1,24 @@
+{
+  "source": "UCI SMS Spam Collection",
+  "source_url": "https://archive.ics.uci.edu/ml/machine-learning-databases/00228/smsspamcollection.zip",
+  "full_path": "ml\\data\\processed\\trustnet_sms_full.csv",
+  "train_path": "ml\\data\\processed\\trustnet_sms_train.csv",
+  "augmented_train_path": "ml\\data\\processed\\trustnet_sms_train_augmented.csv",
+  "test_path": "ml\\data\\processed\\trustnet_sms_test.csv",
+  "rows": 5169,
+  "train_rows": 4135,
+  "augmented_train_rows": 4185,
+  "curated_scam_rows": 30,
+  "curated_safe_rows": 20,
+  "test_rows": 1034,
+  "label_counts": {
+    "Safe": 4516,
+    "Scam": 653
+  },
+  "augmented_train_label_counts": {
+    "Safe": 3633,
+    "Scam": 552
+  },
+  "test_size": 0.2,
+  "random_state": 42
+}
