@@ -37,7 +37,7 @@ class VerifyResponse(BaseModel):
     session_id: str
     intel_extracted: bool
     report_id: str | None = None
-    followup_available: bool  # ✅ NEW
+    followup_available: bool
 
 
 # ---------------------------
@@ -75,9 +75,19 @@ async def verify_content(
     # --- LLM explanation ---
     llm_analysis = analyze_with_groq(text)
 
-    label = str(ml_result["label"])
-    trust_score = float(ml_result["trust_score"])
+    # --- Extract ML outputs ---
+    ml_label = str(ml_result["label"])
     ml_prob = float(ml_result["ml_scam_probability"])
+    trust_score = float(ml_result["trust_score"])
+
+    # 🔥 HYBRID DECISION LOGIC (FIXED)
+    if "scam" in llm_analysis.lower():
+        label = "Scam"
+        trust_score = min(trust_score, 40)
+    elif ml_prob > 0.6:
+        label = "Scam"
+    else:
+        label = "Safe"
 
     # --- Create conversation ---
     session_id = uuid.uuid4().hex
@@ -92,7 +102,7 @@ async def verify_content(
     )
 
     db.add(conversation)
-    db.flush()  # get ID
+    db.flush()
 
     # --- Save user message ---
     db.add(Message(
@@ -104,8 +114,8 @@ async def verify_content(
     intel_extracted = False
     report_id: str | None = None
 
-    # --- Intelligence extraction ---
-    if ml_prob >= settings.extraction_threshold:
+    # 🔥 FIXED: Trigger extraction based on FINAL label (not ML only)
+    if label == "Scam":
         try:
             intel_data = run_extraction_pipeline(
                 text=text,
@@ -152,5 +162,5 @@ async def verify_content(
         session_id=session_id,
         intel_extracted=intel_extracted,
         report_id=report_id,
-        followup_available=(label == "Scam"),  # ✅ KEY FEATURE
+        followup_available=(label == "Scam"),
     )
